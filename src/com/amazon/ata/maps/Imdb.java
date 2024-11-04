@@ -1,7 +1,6 @@
 package com.amazon.ata.maps;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Stores the relationships between movies and actors, allowing releasing a new movie
@@ -9,7 +8,8 @@ import java.util.Set;
  * unreleasing a movie completely, and querying actors by movie and vice versa.
  */
 public class Imdb {
-
+    Map<Actor, HashSet<Movie>> actorToMovieMap = new HashMap<>();
+    Map<Movie, HashSet<Actor>> movieToActorMap = new HashMap<>();
     /**
      * Adds the new movie to the set of movies that an actor has appeared in.
      * If the movie already exists in the database, this will overwrite actors
@@ -20,6 +20,20 @@ public class Imdb {
      */
     public void releaseMovie(Movie movie, Set<Actor> actors) {
         //TODO
+        if (movie != null && actors != null) {
+            HashSet<Actor> actorsHashSet = new HashSet<>(actors);
+            //Sets roster of actors to appropriate movie
+            movieToActorMap.put(movie, actorsHashSet);
+
+            //Adds new movie to set of movies that an actor has appeared in
+            HashSet<Movie> moviesHashSet = new HashSet<>();
+            moviesHashSet.add(movie);
+            actors.forEach(thisActor -> {
+               actorToMovieMap.put(thisActor, moviesHashSet);
+            });
+
+
+        }
     }
 
     /**
@@ -58,7 +72,8 @@ public class Imdb {
      */
     public Set<Actor> getActorsInMovie(Movie movie) {
         // TODO: replace
-        return Collections.EMPTY_SET;
+        if (!movieToActorMap.containsKey(movie)) throw new IllegalArgumentException();
+        return movieToActorMap.get(movie);
     }
 
     /**
