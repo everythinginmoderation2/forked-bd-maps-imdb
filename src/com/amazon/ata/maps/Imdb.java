@@ -46,7 +46,7 @@ public class Imdb {
      */
     public boolean removeMovie(Movie movie) {
         // TODO: replace
-        return false;
+        return movieToActorMap.remove(movie, movieToActorMap.get(movie));
     }
 
     /**

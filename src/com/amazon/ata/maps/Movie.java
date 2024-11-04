@@ -12,7 +12,7 @@ public class Movie {
     private final String name;
     private final String director;
     private final LocalDate yearReleased;
-    private final Set<Actor> cast = new HashSet<>();
+//    private final Set<Actor> cast = new HashSet<>();
 
     /**
      * Constructs a new movie with the given parameters.
@@ -39,9 +39,9 @@ public class Movie {
         return yearReleased;
     }
 
-    public Set<Actor> getCast() {
-        return cast;
-    }
+//    public Set<Actor> getCast() {
+//        return cast;
+//    }
 
     @Override
     public String toString() {

@@ -12,7 +12,7 @@ public class Actor {
     private final String name;
     private final LocalDate birthdate;
     private final String birthCity;
-    private final Set<Movie> moviesAppearedIn = new HashSet<>();
+//    private final Set<Movie> moviesAppearedIn = new HashSet<>();
 
     /**
      * Constructs a new actor with the specifid parameters.
@@ -39,9 +39,9 @@ public class Actor {
         return birthCity;
     }
 
-    public Set<Movie> getMoviesAppearedIn() {
-        return moviesAppearedIn;
-    }
+//    public Set<Movie> getMoviesAppearedIn() {
+//        return moviesAppearedIn;
+//    }
 
     @Override
     public String toString() {
