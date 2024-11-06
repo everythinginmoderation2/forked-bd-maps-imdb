@@ -19,7 +19,6 @@ public class Imdb {
      * @param actors a set of actors that appear in the movie
      */
     public void releaseMovie(Movie movie, Set<Actor> actors) {
-        //TODO
         if (movie != null && actors != null) {
             HashSet<Actor> actorsHashSet = new HashSet<>(actors);
             //Sets roster of actors to appropriate movie
@@ -61,6 +60,13 @@ public class Imdb {
      */
     public void tagActorInMovie(Movie movie, Actor actor) {
         //TODO
+        if (movieToActorMap.containsKey(movie)) {
+            movieToActorMap.get(movie).add(actor);
+        } else {
+            HashSet<Actor> actorSet = new HashSet<>();
+            actorSet.add(actor);
+            movieToActorMap.put(movie, actorSet);
+        }
     }
 
     /**
@@ -71,7 +77,6 @@ public class Imdb {
      * @return the set of actors who are credited in the passed in movie
      */
     public Set<Actor> getActorsInMovie(Movie movie) {
-        // TODO: replace
         if (!movieToActorMap.containsKey(movie)) throw new IllegalArgumentException();
         return movieToActorMap.get(movie);
     }
@@ -85,7 +90,8 @@ public class Imdb {
      */
     public Set<Movie> getMoviesForActor(Actor actor) {
         // TODO: replace
-        return Collections.EMPTY_SET;
+        System.out.println(actorToMovieMap.get(actor));
+        return actorToMovieMap.get(actor);
     }
 
     /**
