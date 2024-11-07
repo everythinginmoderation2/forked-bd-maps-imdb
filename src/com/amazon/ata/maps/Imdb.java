@@ -25,9 +25,16 @@ public class Imdb {
             movieToActorMap.put(movie, actorsHashSet);
 
             //Adds new movie to set of movies that an actor has appeared in
-            HashSet<Movie> moviesHashSet = new HashSet<>();
-            moviesHashSet.add(movie);
+//            HashSet<Movie> moviesHashSet = new HashSet<>();
+//            moviesHashSet.add(movie);
+
             actors.forEach(thisActor -> {
+                HashSet<Movie> moviesHashSet = actorToMovieMap.get(thisActor);
+                if(moviesHashSet != null) moviesHashSet.add(movie);
+                else {
+                    moviesHashSet = new HashSet<>();
+                    moviesHashSet.add(movie);
+                }
                actorToMovieMap.put(thisActor, moviesHashSet);
             });
 
@@ -59,7 +66,6 @@ public class Imdb {
      * @param actor the actor that appears in this movie
      */
     public void tagActorInMovie(Movie movie, Actor actor) {
-        //TODO
         if (movieToActorMap.containsKey(movie)) {
             movieToActorMap.get(movie).add(actor);
         } else {
@@ -67,6 +73,7 @@ public class Imdb {
             actorSet.add(actor);
             movieToActorMap.put(movie, actorSet);
         }
+        actorToMovieMap.get(actor).add(movie);
     }
 
     /**
@@ -90,7 +97,7 @@ public class Imdb {
      */
     public Set<Movie> getMoviesForActor(Actor actor) {
         // TODO: replace
-        System.out.println(actorToMovieMap.get(actor));
+        if (actorToMovieMap.isEmpty()) return new HashSet<>();
         return actorToMovieMap.get(actor);
     }
 
