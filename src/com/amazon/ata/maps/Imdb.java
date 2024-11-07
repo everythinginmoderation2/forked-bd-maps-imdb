@@ -25,9 +25,6 @@ public class Imdb {
             movieToActorMap.put(movie, actorsHashSet);
 
             //Adds new movie to set of movies that an actor has appeared in
-//            HashSet<Movie> moviesHashSet = new HashSet<>();
-//            moviesHashSet.add(movie);
-
             actors.forEach(thisActor -> {
                 HashSet<Movie> moviesHashSet = actorToMovieMap.get(thisActor);
                 if(moviesHashSet != null) moviesHashSet.add(movie);
@@ -51,7 +48,6 @@ public class Imdb {
      *         to begin with
      */
     public boolean removeMovie(Movie movie) {
-        // TODO: replace
         return movieToActorMap.remove(movie, movieToActorMap.get(movie));
     }
 
@@ -96,7 +92,6 @@ public class Imdb {
      * @return the set of movies that the passed in actor has appeared in
      */
     public Set<Movie> getMoviesForActor(Actor actor) {
-        // TODO: replace
         if (actorToMovieMap.isEmpty()) return new HashSet<>();
         return actorToMovieMap.get(actor);
     }
@@ -107,8 +102,7 @@ public class Imdb {
      * @return a set of actors that IMDB has as appeared in movies
      */
     public Set<Actor> getAllActorsInIMDB() {
-        // TODO: replace
-        return Collections.EMPTY_SET;
+        return actorToMovieMap.keySet();
     }
 
     /**
@@ -122,6 +116,10 @@ public class Imdb {
      */
     public int getTotalNumCredits() {
         // TODO: replace
-        return 0;
+        int count = 0;
+        for (Actor actor : getAllActorsInIMDB()) {
+            count+=getMoviesForActor(actor).size();
+        }
+        return count;
     }
 }
