@@ -12,7 +12,6 @@ public class Movie {
     private final String name;
     private final String director;
     private final LocalDate yearReleased;
-//    private final Set<Actor> cast = new HashSet<>();
 
     /**
      * Constructs a new movie with the given parameters.
@@ -39,9 +38,6 @@ public class Movie {
         return yearReleased;
     }
 
-//    public Set<Actor> getCast() {
-//        return cast;
-//    }
 
     @Override
     public String toString() {
@@ -52,11 +48,13 @@ public class Movie {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Movie movie)) return false;
-        return Objects.equals(name, movie.name);
+        return Objects.equals(name, movie.name)
+                && Objects.equals(director, movie.director)
+                && Objects.equals(yearReleased, movie.yearReleased);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, director, yearReleased);
     }
 }

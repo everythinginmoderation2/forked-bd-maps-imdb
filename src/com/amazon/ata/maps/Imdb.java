@@ -62,6 +62,14 @@ public class Imdb {
      * @param actor the actor that appears in this movie
      */
     public void tagActorInMovie(Movie movie, Actor actor) {
+        if (!actorToMovieMap.containsKey(actor)) {
+            HashSet<Movie> movieSet = new HashSet<>();
+            movieSet.add(movie);
+            actorToMovieMap.put(actor, movieSet);
+        } else {
+            actorToMovieMap.get(actor).add(movie);
+        }
+
         if (movieToActorMap.containsKey(movie)) {
             movieToActorMap.get(movie).add(actor);
         } else {
@@ -69,7 +77,6 @@ public class Imdb {
             actorSet.add(actor);
             movieToActorMap.put(movie, actorSet);
         }
-        actorToMovieMap.get(actor).add(movie);
     }
 
     /**
@@ -115,7 +122,6 @@ public class Imdb {
      *         any actor has appeared in any movie
      */
     public int getTotalNumCredits() {
-        // TODO: replace
         int count = 0;
         for (Actor actor : getAllActorsInIMDB()) {
             count+=getMoviesForActor(actor).size();

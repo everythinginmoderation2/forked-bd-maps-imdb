@@ -12,7 +12,6 @@ public class Actor {
     private final String name;
     private final LocalDate birthdate;
     private final String birthCity;
-//    private final Set<Movie> moviesAppearedIn = new HashSet<>();
 
     /**
      * Constructs a new actor with the specifid parameters.
